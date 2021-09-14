@@ -1,0 +1,43 @@
+<h1>Welcome!</h1>
+
+<div class="play-container">
+    <p>You have clicked <span (click)="countClick()">this</span> {{clickCounter}} time.</p>
+</div>
+
+<div class="play-container">
+    <p>
+        <input type="text" [(ngModel)] ="name">
+        <br>
+        <strong>You said:</strong> {{name}}
+    </p>
+</div>
+<!-- START 'style binding: Option 1 style binding to display 1 property' -->
+<!-- <div class="play-container" [style.background-color]="clickCounter > 4 ?'yellow' : 'lightgray'"> -->
+<!-- END 'style binding: Option 1 to display 1 property' -->
+
+<!-- START 'style binding: Option 2 style binding to display multiple property' -->
+<!--
+<div class="play-container" [ngStyle]="{
+    'background-color': clickCounter > 4 ? 'yellow' : 'lightgray',
+    'border': clickCounter > 4 ? '4px solid black' : 'none;'
+    }">
+-->
+<!-- END 'style binding: Option 2 style binding to display multiple property' -->
+
+<!-- START '1 Class binding -->
+<!--
+<div class="play-container" [class.active]="clickCounter > 4">
+-->
+<!-- END '1 Class binding  -->
+
+<!-- START 'Multiple class binding -->
+<div class="play-container" [ngClass]="setClasses()">
+<!-- END 'Multiple class binding -->
+    <ng-template [ngIf]="clickCounter > 4" [ngIfElse]="none">
+        <p>The click counter <strong>is greater</strong> than 4.</p>
+    </ng-template>
+
+    <ng-template #none>
+        <p>The click counter <strong>is not greater</strong> than 4.</p>
+    </ng-template>
+</div>
